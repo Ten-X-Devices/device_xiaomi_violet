@@ -1,0 +1,2 @@
+# Touchboost
+allow system_app sysfs_touchboost:file { open read getattr write };

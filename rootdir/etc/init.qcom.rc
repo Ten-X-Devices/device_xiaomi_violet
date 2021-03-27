@@ -330,6 +330,10 @@ on boot
     enable vendor.dataqti
     enable vendor.dataadpl
 
+# Touchboost
+    chown system system /sys/module/msm_performance/parameters/touchboost
+    chmod 0660 /sys/module/msm_performance/parameters/touchboost
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/hbtp 0750 system system

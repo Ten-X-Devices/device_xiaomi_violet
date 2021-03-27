@@ -174,4 +174,9 @@
     <!-- Ambient Display -->
     <string name="ambient_display_xiaomi">Xiaomi Doze</string>
     <string name="advanced_doze_summary">Ambient display</string>
+
+    <!-- Touchboost -->
+    <string name="boost_title">Boost</string>
+    <string name="touchboost_title">Enable Touchboost</string>
+    <string name="touchboost_summary">Boost CPU when touch detected for smooth experience</string>
 </resources>

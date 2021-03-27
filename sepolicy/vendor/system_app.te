@@ -24,3 +24,6 @@ allow system_app sysfs_leds:dir search;
 allow system_app sysfs_tbrightness:file { open getattr write };
 
 get_prop(system_app, vendor_default_prop)
+
+# Touchboost
+allow system_app sysfs_touchboost:file { open read getattr write };

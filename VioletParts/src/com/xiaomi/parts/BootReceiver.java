@@ -134,6 +134,11 @@ public class BootReceiver extends BroadcastReceiver implements Utils {
         FileUtils.setValue(DeviceSettings.TORCH_2_BRIGHTNESS_PATH,
                 Settings.Secure.getInt(context.getContentResolver(),
                         DeviceSettings.PREF_TORCH_BRIGHTNESS, 150));
+                        
+         //TouchBoost
+        FileUtils.setValue(DeviceSettings.MSM_TOUCHBOOST_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                DeviceSettings.PREF_MSM_TOUCHBOOST, 0));
+                
 	// Dirac
         context.startService(new Intent(context, DiracService.class));
     }

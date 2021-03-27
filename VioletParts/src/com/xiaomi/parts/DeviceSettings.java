@@ -61,6 +61,9 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String PREF_CLEAR_SPEAKER = "clear_speaker_settings";
 
     public static final String KEY_VIBSTRENGTH = "vib_strength";
+    
+    public static final String PREF_MSM_TOUCHBOOST = "touchboost";
+    public static final String MSM_TOUCHBOOST_PATH = "/sys/module/msm_performance/parameters/touchboost";
 
     final static String PREF_TORCH_BRIGHTNESS = "torch_brightness";
     public static final String TORCH_1_BRIGHTNESS_PATH = "/sys/devices/platform/soc/c440000.qcom," +
@@ -80,6 +83,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private SecureSettingListPreference mHeadsetType;
     private SecureSettingListPreference mPreset;
     private VibratorStrengthPreference mVibratorStrength;
+    private SecureSettingSwitchPreference mTouchboost;
 
     private static Context mContext;
 
@@ -108,6 +112,15 @@ public class DeviceSettings extends PreferenceFragment implements
             startActivity(intent);
             return true;
         });
+        
+         if (FileUtils.fileWritable(MSM_TOUCHBOOST_PATH)) {
+            mTouchboost = (SecureSettingSwitchPreference) findPreference(PREF_MSM_TOUCHBOOST);
+            mTouchboost.setEnabled(Touchboost.isSupported());
+            mTouchboost.setChecked(Touchboost.isCurrentlyEnabled(this.getContext()));
+            mTouchboost.setOnPreferenceChangeListener(new Touchboost(getContext()));
+        } else {
+            getPreferenceScreen().removePreference(findPreference(PREF_MSM_TOUCHBOOST));
+        }
 
         boolean enhancerEnabled;
         try {
